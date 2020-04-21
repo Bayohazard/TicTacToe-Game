@@ -2,6 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.Math;
 
+
 /**
  * This class makes a game of TicTacToe for two
  * human players.
@@ -14,32 +15,12 @@ public class TicTacToe {
 	private static int currentPlayer = 0;
 
 	private static Scanner keyboard = new Scanner(System.in);
-
-	public static void main(String[] args) {
+	
+	public TicTacToe() {
 		printInstructions();
 		createBoard();
 		runGame();
-
-		System.out.println("Press R to play again. Press anything else to exit");
-		keyboard.nextLine();
-
-		try{
-			String input = keyboard.nextLine();
-			char letter = input.charAt(0);
-
-			if(letter == 'R' || letter == 'r') {
-				main(args);
-			}
-
-			// Runs if the user does not enter a string
-			// Counts as wanting to end the program
-		}catch(StringIndexOutOfBoundsException ignore) {
-
-		}
-
-		System.out.println("Goodbye.");
 	}
-
 
 	/**
 	 * The main game loop that keeps running
@@ -74,11 +55,11 @@ public class TicTacToe {
 	 * cannot move on until they have entered a valid input.
 	 *
 	 * @exception InputMismatchException Occurs when the player
-	 * 																		does not enter a number
+	 * 									does not enter a number
 	 *
 	 * @exception InputRangeException Occurs when the player
-	 * 																 enters a number outside the
-	 * 																 scope of the game board
+	 * 								enters a number outside the
+	 * 								scope of the game board
 	 *
 	 * @return The position on the game board where the user wants
 	 * to place their token, given as a number.
@@ -103,7 +84,7 @@ public class TicTacToe {
 			} catch(InputMismatchException e) { // Runs if user does not enter a number
 				System.out.println("Something went wrong. Try again.");
 				keyboard.next();
-			} catch(InputRangeException e) {    // Runs if user;s input is not within the bounds of the game board
+			} catch(InputRangeException e) {    // Runs if user's input is not within the bounds of the game board
 				System.out.println(e.toString());
 			}
 
@@ -114,6 +95,7 @@ public class TicTacToe {
 
 	/**
 	 * Does the calculation to know what row the player's input is in.
+	 *
 	 * @param playerInput The position on the game board, ranging from 1 to the size of the board squared
 	 * @return The index of the row that the position is in
 	 */
@@ -133,6 +115,7 @@ public class TicTacToe {
 
 	/**
 	 * Does the calculation to know what column the player's input is in.
+	 *
 	 * @param playerInput The position on the game board, ranging from 1 to the size of the board squared
 	 * @return The index of the column that the position is in
 	 */
@@ -154,6 +137,7 @@ public class TicTacToe {
 	/**
 	 * Checks whether the position trying to be played is available
 	 * and places the token if it is.
+	 *
 	 * @param row The index of the row where the token will be placed
 	 * @param col The index of the column where the token will be placed
 	 * @param currentPlayer Who the current player is, either "X" or "O"
@@ -181,7 +165,8 @@ public class TicTacToe {
 
 	/**
 	 * Calls methods to check for a win, either through a row, column, or
-	 * diagonally. Is called after every play
+	 * diagonally. Is called after every play.
+	 *
 	 * @param gameBoard The game board in its current state
 	 * @return Boolean stating whether the current player has won
 	 */
@@ -360,10 +345,8 @@ public class TicTacToe {
 		}
 
 	}
-
-
+	
 	public static class InputRangeException extends Exception {
-
 		public String toString() {
 			return "Make sure the number is between 1 and " + (SIZE * SIZE) + ". Try again.";
 		}
